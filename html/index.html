@@ -1,371 +1,223 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quantity Measurement</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../css/style.css" />
-  </head>
-  <body>
-    <!-- =================== AUTH PAGE =================== -->
-    <div id="auth-page">
-      <div class="auth-card">
-        <!-- Hero Section -->
-        <div class="auth-hero">
-          <div class="stars">★ ★</div>
-          <div class="stars2">★</div>
-          <div class="auth-hero-icons">
-            <span>🪙</span>
-            <span>🌡️</span>
-            <span>⚖️</span>
-            <span>🧪</span>
-            <span>📏</span>
-          </div>
-          <h2>Welcome to Quantity Measurement</h2>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quantity Measurement</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+
+  <!-- ===== AUTH PAGE ===== -->
+  <div class="auth-page" id="authPage">
+    <div class="auth-card">
+
+      <div class="auth-brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 44L26 8L44 44" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M13 34H39" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+            <circle cx="26" cy="26" r="6" fill="rgba(255,255,255,0.25)" stroke="white" stroke-width="2"/>
+          </svg>
         </div>
-
-        <!-- Auth Body -->
-        <div class="auth-body">
-          <!-- Login / Signup Tabs -->
-          <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('login')">
-              LOGIN
-            </button>
-            <button class="tab-btn" onclick="switchTab('signup')">
-              SIGNUP
-            </button>
-          </div>
-
-          <!-- ===== LOGIN FORM ===== -->
-          <div id="login-form">
-            <!-- Login Method Toggle -->
-            <div class="login-toggle">
-              <button
-                class="ltoggle-btn active"
-                id="lt-email"
-                onclick="switchLoginMethod('email')"
-              >
-                📧 Email
-              </button>
-              <button
-                class="ltoggle-btn"
-                id="lt-mobile"
-                onclick="switchLoginMethod('mobile')"
-              >
-                📱 Mobile
-              </button>
-            </div>
-
-            <!-- Email Field -->
-            <div id="login-email-group" class="form-group">
-              <div class="input-wrap" id="wrap-lemail">
-                <span class="icon">✉️</span>
-                <input
-                  type="text"
-                  id="login-email"
-                  placeholder="Enter your email"
-                  oninput="liveValidateEmail()"
-                />
-              </div>
-              <div class="field-err" id="err-lemail"></div>
-            </div>
-
-            <!-- Mobile Field (hidden by default) -->
-            <div
-              id="login-mobile-group"
-              class="form-group"
-              style="display: none"
-            >
-              <div class="input-wrap" id="wrap-lmobile">
-                <span class="icon">📱</span>
-                <input
-                  type="tel"
-                  id="login-mobile"
-                  placeholder="Enter 10-digit mobile number"
-                  maxlength="10"
-                  oninput="
-                    liveValidateMobile(
-                      'login-mobile',
-                      'wrap-lmobile',
-                      'err-lmobile',
-                    )
-                  "
-                />
-              </div>
-              <div class="field-err" id="err-lmobile"></div>
-            </div>
-
-            <!-- Password Field -->
-            <div class="form-group">
-              <div class="input-wrap" id="wrap-lpass">
-                <span class="icon">🔒</span>
-                <input
-                  type="password"
-                  id="login-pass"
-                  placeholder="Enter your password"
-                  oninput="clearWrapErr('wrap-lpass', 'err-lpass')"
-                />
-                <button
-                  class="toggle-eye"
-                  onclick="togglePass('login-pass', this)"
-                >
-                  👁️
-                </button>
-              </div>
-              <div class="field-err" id="err-lpass"></div>
-            </div>
-
-            <div class="forgot"><a href="#">Forgot password?</a></div>
-            <div class="msg" id="login-msg"></div>
-
-            <button class="btn-primary" onclick="doLogin()">Login</button>
-
-            <div class="divider">or continue with</div>
-
-            <button class="social-btn" onclick="googleLogin()">
-              <svg class="google-icon" viewBox="0 0 48 48">
-                <path
-                  fill="#EA4335"
-                  d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"
-                />
-                <path
-                  fill="#4285F4"
-                  d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"
-                />
-                <path
-                  fill="#FBBC05"
-                  d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"
-                />
-                <path
-                  fill="#34A853"
-                  d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.32-8.16 2.32-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"
-                />
-                <path fill="none" d="M0 0h48v48H0z" />
-              </svg>
-              Continue with Google
-            </button>
-          </div>
-
-          <!-- ===== SIGNUP FORM ===== -->
-          <div id="signup-form" style="display: none">
-            <!-- Full Name -->
-            <div class="form-group">
-              <div class="input-wrap" id="wrap-sname">
-                <span class="icon">👤</span>
-                <input
-                  type="text"
-                  id="signup-name"
-                  placeholder="Enter your full name"
-                  oninput="clearWrapErr('wrap-sname', 'err-sname')"
-                />
-              </div>
-              <div class="field-err" id="err-sname"></div>
-            </div>
-
-            <!-- Email -->
-            <div class="form-group">
-              <div class="input-wrap" id="wrap-semail">
-                <span class="icon">✉️</span>
-                <input
-                  type="text"
-                  id="signup-email"
-                  placeholder="Enter your email"
-                  oninput="liveValidateSignupEmail()"
-                />
-              </div>
-              <div class="field-err" id="err-semail"></div>
-            </div>
-
-            <!-- Mobile -->
-            <div class="form-group">
-              <div class="input-wrap" id="wrap-smobile">
-                <span class="icon">📱</span>
-                <input
-                  type="tel"
-                  id="signup-mobile"
-                  placeholder="Enter 10-digit mobile number"
-                  maxlength="10"
-                  oninput="
-                    liveValidateMobile(
-                      'signup-mobile',
-                      'wrap-smobile',
-                      'err-smobile',
-                    )
-                  "
-                />
-              </div>
-              <div class="field-err" id="err-smobile"></div>
-            </div>
-
-            <!-- Password -->
-            <div class="form-group">
-              <div class="input-wrap" id="wrap-spass">
-                <span class="icon">🔒</span>
-                <input
-                  type="password"
-                  id="signup-pass"
-                  placeholder="Create a password (min 6 chars)"
-                  oninput="livePasswordStrength()"
-                />
-                <button
-                  class="toggle-eye"
-                  onclick="togglePass('signup-pass', this)"
-                >
-                  👁️
-                </button>
-              </div>
-
-              <!-- Password Strength Bar -->
-              <div
-                class="pass-strength"
-                id="pass-strength-wrap"
-                style="display: none"
-              >
-                <div class="strength-bar">
-                  <div class="strength-seg" id="seg1"></div>
-                  <div class="strength-seg" id="seg2"></div>
-                  <div class="strength-seg" id="seg3"></div>
-                  <div class="strength-seg" id="seg4"></div>
-                </div>
-                <div class="strength-label" id="strength-label"></div>
-              </div>
-
-              <div class="field-err" id="err-spass"></div>
-            </div>
-
-            <div class="msg" id="signup-msg"></div>
-
-            <button class="btn-primary" onclick="doSignup()">
-              Create Account
-            </button>
-
-            <div class="divider">or continue with</div>
-
-            <button class="social-btn" onclick="googleLogin()">
-              <svg class="google-icon" viewBox="0 0 48 48">
-                <path
-                  fill="#EA4335"
-                  d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"
-                />
-                <path
-                  fill="#4285F4"
-                  d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"
-                />
-                <path
-                  fill="#FBBC05"
-                  d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"
-                />
-                <path
-                  fill="#34A853"
-                  d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.32-8.16 2.32-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"
-                />
-                <path fill="none" d="M0 0h48v48H0z" />
-              </svg>
-              Sign up with Google
-            </button>
-          </div>
-        </div>
-        <!-- /.auth-body -->
+        <h1>Quantity Measurement</h1>
+        <p>Convert, compare &amp; compute measurements across length, weight, temperature, and volume.</p>
       </div>
-      <!-- /.auth-card -->
+
+      <div class="auth-form-area">
+        <div class="auth-tabs">
+          <button class="auth-tab" id="loginTab">LOGIN</button>
+          <button class="auth-tab active" id="signupTab">SIGNUP</button>
+        </div>
+
+        <!-- SIGNUP FORM -->
+        <div id="signupForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="su-name">Full Name</label>
+              <input type="text" class="form-input" id="su-name" placeholder="Your full name" autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="su-mobile">Mobile <span class="form-hint">(10 digits)</span></label>
+              <input type="tel" class="form-input" id="su-mobile" placeholder="10-digit number" maxlength="10" autocomplete="tel" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="su-email">Email Id</label>
+            <input type="email" class="form-input" id="su-email" placeholder="you@example.com" autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="su-pw">Password <span class="form-hint">(min 8 chars)</span></label>
+            <div class="pw-wrap">
+              <input type="password" class="form-input" id="su-pw" placeholder="Create a strong password" autocomplete="new-password" />
+              <button class="pw-toggle" data-target="su-pw" type="button" aria-label="Toggle password">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              </button>
+            </div>
+            <div class="pw-strength">
+              <div class="pw-bar"><div class="pw-fill" id="su-pw-fill"></div></div>
+              <span class="pw-label" id="su-pw-label"></span>
+            </div>
+          </div>
+          <div class="error-msg" id="su-err" role="alert"></div>
+          <button class="auth-btn auth-btn--coral" id="signupBtn">Create Account</button>
+          <div class="auth-divider"><span>or</span></div>
+          <button class="auth-btn auth-btn--google" id="googleSignupBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" style="flex-shrink:0"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            Continue with Google
+          </button>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div id="loginForm" class="form-hidden">
+          <div class="form-group">
+            <label class="form-label" for="li-email">Email Id</label>
+            <input type="email" class="form-input" id="li-email" placeholder="you@example.com" autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="li-pw">Password</label>
+            <div class="pw-wrap">
+              <input type="password" class="form-input" id="li-pw" placeholder="Your password" autocomplete="current-password" />
+              <button class="pw-toggle" data-target="li-pw" type="button" aria-label="Toggle password">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="error-msg" id="li-err" role="alert"></div>
+          <button class="auth-btn auth-btn--blue" id="loginBtn">Login</button>
+          <div class="auth-divider"><span>or</span></div>
+          <button class="auth-btn auth-btn--google" id="googleLoginBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" style="flex-shrink:0"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            Continue with Google
+          </button>
+        </div>
+      </div>
+
     </div>
-    <!-- /#auth-page -->
+  </div>
 
-    <!-- =================== DASHBOARD PAGE =================== -->
-    <div id="dashboard-page" style="display: none; flex-direction: column">
-      <!-- Header -->
-      <div class="dash-header">
-        <h1>🔬 Welcome To Quantity Measurement</h1>
-        <button class="logout-btn" onclick="doLogout()">Logout</button>
+  <!-- ===== APP PAGE ===== -->
+  <div class="app-page" id="appPage">
+
+    <header class="app-header">
+      <div class="header-brand">
+        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 24L14 4L24 24" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M7 18H21" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <h1>Quantity Measurement</h1>
       </div>
+      <div class="header-actions">
+        <div class="user-chip">
+          <div class="avatar" id="userAvatar">U</div>
+          <span id="userName">User</span>
+        </div>
+        <button class="header-btn" id="historyToggleBtn" title="View History">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          History
+          <span class="history-badge" id="historyBadge" style="display:none">0</span>
+        </button>
+        <button class="header-btn header-btn--danger" id="logoutBtn" title="Logout">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Logout
+        </button>
+      </div>
+    </header>
 
-      <!-- Body -->
-      <div class="dash-body">
-        <!-- Choose Type -->
+    <!-- HISTORY DRAWER -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <aside class="history-drawer" id="historyDrawer" aria-label="Calculation history">
+      <div class="drawer-header">
+        <span class="drawer-title">Calculation History</span>
+        <div style="display:flex;gap:0.5rem;align-items:center;">
+          <button class="clear-btn" id="clearHistoryBtn" title="Clear all history">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6M9 6V4h6v2"/></svg>
+            Clear All
+          </button>
+          <button class="drawer-close" id="historyCloseBtn" aria-label="Close history">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+      <div id="historyList">
+        <div class="history-empty">No calculations yet.<br>Start measuring!</div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+
+      <section aria-label="Choose measurement type">
         <div class="section-label">Choose Type</div>
-        <div class="type-cards">
-          <div class="type-card selected" onclick="selectType('Length', this)">
-            <span class="icon">📏</span>
-            <div class="label">Length</div>
+        <div class="type-grid" id="typeGrid">
+          <div class="type-card active" data-type="Length" role="button" tabindex="0">
+            <div class="type-icon type-icon--length">📏</div>
+            <div class="type-label">Length</div>
           </div>
-          <div class="type-card" onclick="selectType('Weight', this)">
-            <span class="icon">⚖️</span>
-            <div class="label">Weight</div>
+          <div class="type-card" data-type="Weight" role="button" tabindex="0">
+            <div class="type-icon type-icon--weight">⚖️</div>
+            <div class="type-label">Weight</div>
           </div>
-          <div class="type-card" onclick="selectType('Temperature', this)">
-            <span class="icon">🌡️</span>
-            <div class="label">Temperature</div>
+          <div class="type-card" data-type="Temperature" role="button" tabindex="0">
+            <div class="type-icon type-icon--temp">🌡️</div>
+            <div class="type-label">Temperature</div>
           </div>
-          <div class="type-card" onclick="selectType('Volume', this)">
-            <span class="icon">🧪</span>
-            <div class="label">Volume</div>
+          <div class="type-card" data-type="Volume" role="button" tabindex="0">
+            <div class="type-icon type-icon--volume">🧪</div>
+            <div class="type-label">Volume</div>
           </div>
         </div>
+      </section>
 
-        <!-- Choose Action -->
+      <section aria-label="Choose action">
         <div class="section-label">Choose Action</div>
-        <div class="action-tabs">
-          <button
-            class="action-tab active"
-            onclick="selectAction('Comparison', this)"
-          >
-            Comparison
-          </button>
-          <button class="action-tab" onclick="selectAction('Conversion', this)">
-            Conversion
-          </button>
-          <button class="action-tab" onclick="selectAction('Arithmetic', this)">
-            Arithmetic
-          </button>
+        <div class="action-tabs" id="actionTabs" role="tablist">
+          <button class="action-tab active" data-action="Comparison" role="tab" aria-selected="true">Comparison</button>
+          <button class="action-tab" data-action="Conversion" role="tab" aria-selected="false">Conversion</button>
+          <button class="action-tab" data-action="Arithmetic" role="tab" aria-selected="false">Arithmetic</button>
+        </div>
+      </section>
+
+      <section class="calc-panel" aria-label="Calculator">
+        <div class="operator-row" id="operatorRow" aria-hidden="true">
+          <div class="section-label" style="align-self:center;margin-bottom:0;margin-right:0.5rem;">Operator:</div>
+          <button class="op-btn active" data-op="+" aria-pressed="true">+</button>
+          <button class="op-btn" data-op="-" aria-pressed="false">−</button>
+          <button class="op-btn" data-op="*" aria-pressed="false">×</button>
+          <button class="op-btn" data-op="/" aria-pressed="false">÷</button>
         </div>
 
-        <!-- Arithmetic Operator Row -->
-        <div id="arith-op-row" style="display: none">
-          <button class="arith-op-btn active" onclick="selectOp('+', this)">
-            +
-          </button>
-          <button class="arith-op-btn" onclick="selectOp('-', this)">−</button>
-          <button class="arith-op-btn" onclick="selectOp('x', this)">×</button>
-          <button class="arith-op-btn" onclick="selectOp('/', this)">÷</button>
-        </div>
-
-        <!-- Input Row -->
-        <div class="measure-row">
-          <div class="measure-box">
-            <div class="box-label" id="from-label">FROM</div>
-            <input type="number" id="val1" value="1" oninput="clearResult()" />
-            <select id="unit1" onchange="clearResult()"></select>
+        <div class="calc-row">
+          <div class="calc-field">
+            <div class="calc-field-label">From</div>
+            <input type="number" class="num-input" id="fromValue" value="1" aria-label="From value" />
+            <select class="unit-select" id="fromUnit" aria-label="From unit"></select>
           </div>
-          <div class="measure-box" id="to-box">
-            <div class="box-label" id="to-label">TO</div>
-            <input
-              type="number"
-              id="val2"
-              value="1000"
-              oninput="clearResult()"
-            />
-            <select id="unit2" onchange="clearResult()"></select>
+          <div class="calc-arrow" aria-hidden="true">→</div>
+          <div class="calc-field">
+            <div class="calc-field-label">To</div>
+            <input type="number" class="num-input" id="toValue" placeholder="?" aria-label="To value" readonly />
+            <select class="unit-select" id="toUnit" aria-label="To unit"></select>
           </div>
         </div>
 
-        <!-- Error & Result -->
-        <div class="error-msg" id="error-msg"></div>
-        <div class="result-card" id="result-card">
-          <div class="result-label" id="result-label">Result</div>
-          <div class="result-value" id="result-value">—</div>
-          <div class="result-sub" id="result-sub"></div>
+        <div class="calc-actions">
+          <button class="calc-btn" id="calcBtn">Calculate</button>
+          <div class="error-msg" id="calcErr" role="alert"></div>
         </div>
 
-        <button class="calc-btn" onclick="calculate()">Calculate</button>
-      </div>
-      <!-- /.dash-body -->
-    </div>
-    <!-- /#dashboard-page -->
+        <div class="result-area result-area--hidden" id="resultArea" aria-live="polite">
+          <div class="result-label">Result</div>
+          <div class="result-value" id="resultValue">—</div>
+        </div>
+      </section>
 
-    <script src="../javaScript/script.js"></script>
-  </body>
+    </main>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
 </html>
